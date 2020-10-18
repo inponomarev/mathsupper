@@ -21,4 +21,4 @@ deploy:
   github_token: $GH_TOKEN
   local_dir: slides/target/generated-slides
   on:
-    branch: master
+    branch: main
