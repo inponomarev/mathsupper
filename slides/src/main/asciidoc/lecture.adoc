@@ -91,10 +91,76 @@ digraph G {
 [.fragment]
 Является ли stem:[n] номером високосного года в Григорианском календаре
 
-== Логика : TODO 
+== Ужинающие философы
 
-Формальная спецификация
+Здесь идут наши фото с вилками за столом на манеру ужинающих философов
 
+== PlusCal
+----
+algorithm dining_philosophers
+
+    variables forks = [fork \in 1..NP |-> NULL]
+
+    define
+        LeftFork(p) == p
+        RightFork(p) == IF p = NP THEN 1 ELSE p + 1
+
+        HeldForks(p) ==
+        { x \in {LeftFork(p), RightFork(p)}: forks[x] = p}
+
+        AvailableForks(p) ==
+        { x \in {LeftFork(p), RightFork(p)}: forks[x] = NULL}
+    end define;
+
+    process philosopher \in 1..NP
+    variables hungry = TRUE;
+    begin P:
+        while hungry do
+            with fork \in AvailableForks(self) do
+                forks[fork] := self;
+            end with;
+            Eat:
+            if Cardinality(HeldForks(self)) = 2 then
+                hungry := FALSE;
+                forks[LeftFork(self)] := NULL ||
+                forks[RightFork(self)] := NULL;
+            end if;
+        end while;
+    end process;
+
+end algorithm;
+----
+
+https://learntla.com/concurrency/processes/, https://creativecommons.org/licenses/by/4.0/
+
+Андрей: как думаете на каком языке написано?
+Кто-то: Судя по begin, end похоже на какой-то Pascal
+Андрей: Ага, почти Pascal, только буквы надо переставить будет PlusCal
+Кто-то: А почему нам сразу не написать на каком-то неэзотерическом языке?
+Андрей: Ну написав на PlusCal мы можем проверить какие-нибудь свойства этого алгоритма.
+Мы же хотим поесть? Было бы неплохо убедиться, что например не попадаем в Deadlock,
+и все останемся голодными
+
+== Model Checking
+image::tla_deadlock.png[{image-70-width}]
+
+== TLA+
+Здесь мы разговариваем про то, что PlusCal преобразуется в TLA+
+И то, что в процессе работы над Elasticsearch мы описывали алгоритм консенсуса на TLA+,
+чтобы проверить его корректность перед программированием на Java.
+Так же я приведу пример, когда был написан алгоритм на Java для сохранения состояния кластера
+на диск и на него были написаны рандомизированные тесты. B один прекрасный момент тест упал.
+Чтобы убедиться, что ошибок больше нет, я написал TLA+ версию этого алгоритма и теперь был
+уверен, что это единственная ошибка.
+
+== Нужны ли тесты, если есть формальная спецификация?
+1. Нужны потому что обычно это model checking, а не формальное доказательство. Здесь можно
+упомянуть Isabelle и Coq.
+2. Формальная спецификация обычно очень многое астрагирует
+3. В процессе кодирования можно допустить ошибки
+
+== Что почитать?
+Specifying Systems: The TLA+ Language
 
 == Статистика
 
