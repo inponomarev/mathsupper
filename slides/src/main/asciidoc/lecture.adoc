@@ -93,12 +93,12 @@ digraph G {
 
 == Ужинающие философы
 
-Здесь идут наши фото с вилками за столом на манеру ужинающих философов
+image::Table.png[{image-60-width}]
 
-== PlusCal
+== Алгоритм
+[small]
 ----
 algorithm dining_philosophers
-
     variables forks = [fork \in 1..NP |-> NULL]
 
     define
@@ -131,7 +131,8 @@ algorithm dining_philosophers
 end algorithm;
 ----
 
-https://learntla.com/concurrency/processes/, https://creativecommons.org/licenses/by/4.0/
+Credit to https://learntla.com/concurrency/processes/, licensed under
+https://creativecommons.org/licenses/by/4.0/[Creative Commons Attribution 4.0 International License]
 
 Андрей: как думаете на каком языке написано?
 Кто-то: Судя по begin, end похоже на какой-то Pascal
@@ -142,7 +143,7 @@ https://learntla.com/concurrency/processes/, https://creativecommons.org/license
 и все останемся голодными
 
 == Model Checking
-image::tla_deadlock.png[{image-70-width}]
+image::tla_deadlock.png[{image-100-width}]
 
 == TLA+
 Здесь мы разговариваем про то, что PlusCal преобразуется в TLA+
