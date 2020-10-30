@@ -70,11 +70,25 @@ digraph G {
 ----
 
 
+
 == TODO
 
 * Классы эквивалентности
 * A/B testing
 * ссылки на почитать
+
+
+== Статистика
+
+Дано: Из мониторинга мы взяли ~1 млн замеров latency за период stem:[А] и ещё ~1 млн замеров latency за период stem:[B]. 
+
+Вопрос: Как понять, стала ли система работать лучше/хуже/ничего не изменилось?
+
+[%notitle]
+== Статистика
+
+image::datasaur.png[{image-70-width}]
+.Datasaurus Dozen, https://www.autodesk.com/research/publications/same-stats-different-graphs
 
 
 == Логика
@@ -131,6 +145,8 @@ algorithm dining_philosophers
 end algorithm;
 ----
 
+[.notes]
+--
 Credit to https://learntla.com/concurrency/processes/, licensed under
 https://creativecommons.org/licenses/by/4.0/[Creative Commons Attribution 4.0 International License]
 
@@ -141,11 +157,20 @@ https://creativecommons.org/licenses/by/4.0/[Creative Commons Attribution 4.0 In
 Андрей: Ну написав на PlusCal мы можем проверить какие-нибудь свойства этого алгоритма.
 Мы же хотим поесть? Было бы неплохо убедиться, что например не попадаем в Deadlock,
 и все останемся голодными
+--
+
+
+== TLA+
+
+image::tlaplus.png[]
+
 
 == Model Checking
 image::tla_deadlock.png[{image-100-width}]
 
-== TLA+
+
+[.notes]
+--
 Здесь мы разговариваем про то, что PlusCal преобразуется в TLA+
 И то, что в процессе работы над Elasticsearch мы описывали алгоритм консенсуса на TLA+,
 чтобы проверить его корректность перед программированием на Java.
@@ -153,24 +178,19 @@ image::tla_deadlock.png[{image-100-width}]
 на диск и на него были написаны рандомизированные тесты. B один прекрасный момент тест упал.
 Чтобы убедиться, что ошибок больше нет, я написал TLA+ версию этого алгоритма и теперь был
 уверен, что это единственная ошибка.
+--
 
 == Нужны ли тесты, если есть формальная спецификация?
+
+TODO
+
 1. Нужны потому что обычно это model checking, а не формальное доказательство. Здесь можно
 упомянуть Isabelle и Coq.
-2. Формальная спецификация обычно очень многое астрагирует
+2. Формальная спецификация обычно очень многое абстрагирует
 3. В процессе кодирования можно допустить ошибки
 
 == Что почитать?
-Specifying Systems: The TLA+ Language
 
-== Статистика
+. *Leslie Lamport.* Specifying Systems: The TLA+ Language
+. *Hillel Wayne.* Practical TLA+  
 
-Дано: Из мониторинга мы взяли ~1 млн замеров latency за период stem:[А] и ещё ~1 млн замеров latency за период stem:[B]. 
-
-Вопрос: Как понять, стала ли система работать лучше/хуже/ничего не изменилось?
-
-[%notitle]
-== Статистика
-
-image::datasaur.png[{image-70-width}]
-.Datasaurus Dozen, https://www.autodesk.com/research/publications/same-stats-different-graphs
