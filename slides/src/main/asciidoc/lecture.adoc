@@ -24,6 +24,28 @@ include::_doc_general_attributes.adoc[]
 :stem: latexmath
 
 
+== A нужна ли математика в тестировании?
+
+image::beatester.png[]
+
+== Многие обще-математические концепции переходят в практику
+
+* «Техника анализа классов эквивалентности»
+
+[stem] 
+++++
+
+\begin{array}{lll}
+a  \sim a \\
+
+a \sim b \Rightarrow b \sim a \\
+
+a \sim b \wedge b \sim c \Rightarrow a \sim c\\
+
+[a]=\{\,x\in X\mid x\sim a\,\}
+\end{array}
+
+++++
 
 == Комбинаторика
 
@@ -69,26 +91,37 @@ digraph G {
 }
 ----
 
+== Что почитать-посмотреть
+
+* *Lee Copeland.* https://www.amazon.com/Practitioners-Guide-Software-Test-Design/dp/158053791X[A Practitioner's Guide to Software Test Design]   
 
 
-== TODO
+* *Мария Палагина.* https://heisenbug-piter.ru/2020/spb/talks/rqzskoml41altltshr14w/[Жизнь МИКРОбов: Heisenbug-Piter 2020] 
 
-* Классы эквивалентности
-* A/B testing
-* ссылки на почитать
+* Всё о pairwise testing: http://pairwise.org
 
 
 == Статистика
 
-Дано: Из мониторинга мы взяли ~1 млн замеров latency за период stem:[А] и ещё ~1 млн замеров latency за период stem:[B]. 
+*Дано:* Из мониторинга мы взяли ~1 млн замеров latency за период stem:[А] и ещё ~1 млн замеров latency за период stem:[B]. 
 
-Вопрос: Как понять, стала ли система работать лучше/хуже/ничего не изменилось?
+*Вопрос:* Как понять, стала ли система работать лучше/хуже/ничего не изменилось?
 
 [%notitle]
 == Статистика
 
-image::datasaur.png[{image-70-width}]
 .Datasaurus Dozen, https://www.autodesk.com/research/publications/same-stats-different-graphs
+image::datasaur.png[{image-70-width}]
+
+== Что посмотреть?
+
+* Узнаем больше про статистику с Анатолием Карповым https://stepik.org/course/76/promo
+
+image::stepik.png[]
+
+* *Андрей Акиньшин.* Heisenbug-Piter 2020. https://heisenbug-piter.ru/2020/spb/talks/7xejc2oupug9reubcwjijo/[Анализируем перформанс с пользой для себя и окружающих] 
+* *Андрей Акиньшин, Андрей Паньгин, Алексей Шипилёв* Techtrain-Вторая волна. https://techtrain.ru/2020/autumn/talks/3h5k7hlpcnakprxebpqspx/[О перформансе серьезно.]
+* *Jack Vanlightly.* https://heisenbug-moscow.ru/2020/msk/talks/2kvaaddpib1jvmrihsk24y/[System testing of RabbitMQ]
 
 
 == Логика
@@ -104,6 +137,8 @@ image::datasaur.png[{image-70-width}]
 
 [.fragment]
 Является ли stem:[n] номером високосного года в Григорианском календаре
+
+
 
 == Ужинающие философы
 
@@ -182,15 +217,15 @@ image::tla_deadlock.png[{image-100-width}]
 
 == Нужны ли тесты, если есть формальная спецификация?
 
-TODO
-
-1. Нужны потому что обычно это model checking, а не формальное доказательство. Здесь можно
-упомянуть Isabelle и Coq.
+1. model checking vs.  формальное доказательство (Isabelle и Coq).
 2. Формальная спецификация обычно очень многое абстрагирует
-3. В процессе кодирования можно допустить ошибки
+3. https://blog.acolyer.org/2015/10/15/ironfleet-proving-practical-distributed-systems-correc/[Cлучай Microsoft Iron Fleet]
 
-== Что почитать?
+image::ihaveonlyproved.png[]
+
+== Что почитать/посмотреть?
 
 . *Leslie Lamport.* Specifying Systems: The TLA+ Language
 . *Hillel Wayne.* Practical TLA+  
+. *Jack Vanlightly*. Heisenbug-Piter 2019. A systematic approach to building reliable distributed systems
 
