@@ -23,7 +23,6 @@ include::_doc_general_attributes.adoc[]
 :revealjs_height: 900
 :stem: latexmath
 
-
 == Нужна ли математика в тестировании?
 
 == «Стать тестировщиком за три дня»
@@ -73,9 +72,9 @@ a \sim b \wedge b \sim c \Rightarrow a \sim c\\
 
 * *Вопрос:* Сколько тест-кейсов надо написать, чтобы полностью протестировать эту функцию?
 
+[.fragment]
 [stem] 
 ++++
-
 \huge 
 1 + a + a^2 + \ldots + a^m = \frac{a^{m+1}-1}{a-1}
 ++++
@@ -83,6 +82,7 @@ a \sim b \wedge b \sim c \Rightarrow a \sim c\\
 == Комбинаторика
 
 * *Дано:* три браузера, три ОС, три сценария.
+* *Вопрос:* так сколько нам нужно тестов? и каким количеством тестов мы готовы обойтись?
 
 [.fragment]
 [graphviz,latin3,png]
@@ -123,11 +123,12 @@ image::datasaur.png[{image-70-width}]
 
 == Что посмотреть?
 
-Узнаем больше про статистику с Анатолием Карповым https://stepik.org/course/76/promo
+Узнаем больше про статистику с Анатолием Карповым: +
+https://stepik.org/course/76/promo
 
 image::stepik.png[]
 
-== Доклады
+== Доклады (для тех, кто уже разбирается в статистике)
 
 * *Андрей Акиньшин.* Heisenbug-Piter 2020. https://heisenbug-piter.ru/2020/spb/talks/7xejc2oupug9reubcwjijo/[Анализируем перформанс с пользой для себя и окружающих] 
 * *Андрей Акиньшин, Андрей Паньгин, Алексей Шипилёв* Techtrain: Вторая волна. https://techtrain.ru/2020/autumn/talks/3h5k7hlpcnakprxebpqspx/[О перформансе серьезно.]
@@ -148,22 +149,11 @@ image::stepik.png[]
 [.fragment]
 Является ли stem:[n] номером високосного года в Григорианском календаре
 
+== Что посмотреть?
 
-== Логика
+* *Kevlin Henney*. Heisenbug-Moscow 2020.  https://heisenbug-piter.ru/2020/spb/talks/4vhqcqstrtm8x7pgdncnzv[What we talk about when we talk about unit testing]
 
-Что это такое?
-
-[stem] 
-++++
-\huge
-\forall n \in \mathbb{N}\;(L(n) \iff
-( n \vdots 16) \vee (n \vdots 4 \wedge \neg n \vdots 25))
-++++
-
-Является ли stem:[n] номером високосного года в Григорианском календаре
-
-*Kevlin Henney*.  https://heisenbug-piter.ru/2020/spb/talks/4vhqcqstrtm8x7pgdncnzv[What we talk about when we talk about unit testing]
-
+* *Jessica Ingrassellino*. Heisenbug-SPb 2019. https://jugspeakers.online/ru/talk/1229.html[Property testing: Strategic automation for devs and SDETs]
 
 == Ужинающие философы
 
@@ -192,7 +182,7 @@ algorithm dining_philosophers
         hungry := FALSE;
         forks[LeftFork(self)] := NULL ||
         forks[RightFork(self)] := NULL;
-        end if;
+      end if;
     end while;
   end process;
 end algorithm;
@@ -238,7 +228,7 @@ image::tla_deadlock.png[{image-100-width}]
 . model checking vs.  формальное доказательство (Isabelle и Coq).
 . synthesis vs. refinement
 . https://blog.acolyer.org/2015/10/15/ironfleet-proving-practical-distributed-systems-correc/[Cлучай Microsoft Iron Fleet]
-. D. Knuth, letter to Dr. P. van Emde Boas, April 1977:
+. *D. Knuth*, letter to Dr. P. van Emde Boas, April 1977:
 
 image::ihaveonlyproved.png[]
 
