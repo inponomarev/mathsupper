@@ -24,17 +24,24 @@ include::_doc_general_attributes.adoc[]
 :stem: latexmath
 
 
-== A нужна ли математика в тестировании?
+== Нужна ли математика в тестировании?
+
+== «Стать тестировщиком за три дня»
 
 image::beatester.png[]
 
-== Многие обще-математические концепции переходят в практику
+[%notitle]
+== Вакансии
+
+image::hh.jpg[]
+
+== Многие общематематические концепции переходят в практику
 
 * «Техника анализа классов эквивалентности»
 
 [stem] 
 ++++
-
+\huge
 \begin{array}{lll}
 a  \sim a \\
 
@@ -68,13 +75,14 @@ a \sim b \wedge b \sim c \Rightarrow a \sim c\\
 
 [stem] 
 ++++
+
 \huge 
 1 + a + a^2 + \ldots + a^m = \frac{a^{m+1}-1}{a-1}
 ++++
 
 == Комбинаторика
 
-Дано: три браузера, три ОС, три сценария.
+* *Дано:* три браузера, три ОС, три сценария.
 
 [.fragment]
 [graphviz,latin3,png]
@@ -103,9 +111,9 @@ digraph G {
 
 == Статистика
 
-*Дано:* Из мониторинга мы взяли ~1 млн замеров latency за период stem:[А] и ещё ~1 млн замеров latency за период stem:[B]. 
+* *Дано:* Из мониторинга мы взяли ~1 млн замеров latency за период stem:[А] и ещё ~1 млн замеров latency за период stem:[B]. 
 
-*Вопрос:* Как понять, стала ли система работать лучше/хуже/ничего не изменилось?
+* *Вопрос:* Как понять, стала ли система работать лучше/хуже/ничего не изменилось?
 
 [%notitle]
 == Статистика
@@ -115,12 +123,14 @@ image::datasaur.png[{image-70-width}]
 
 == Что посмотреть?
 
-* Узнаем больше про статистику с Анатолием Карповым https://stepik.org/course/76/promo
+Узнаем больше про статистику с Анатолием Карповым https://stepik.org/course/76/promo
 
 image::stepik.png[]
 
+== Доклады
+
 * *Андрей Акиньшин.* Heisenbug-Piter 2020. https://heisenbug-piter.ru/2020/spb/talks/7xejc2oupug9reubcwjijo/[Анализируем перформанс с пользой для себя и окружающих] 
-* *Андрей Акиньшин, Андрей Паньгин, Алексей Шипилёв* Techtrain-Вторая волна. https://techtrain.ru/2020/autumn/talks/3h5k7hlpcnakprxebpqspx/[О перформансе серьезно.]
+* *Андрей Акиньшин, Андрей Паньгин, Алексей Шипилёв* Techtrain: Вторая волна. https://techtrain.ru/2020/autumn/talks/3h5k7hlpcnakprxebpqspx/[О перформансе серьезно.]
 * *Jack Vanlightly.* https://heisenbug-moscow.ru/2020/msk/talks/2kvaaddpib1jvmrihsk24y/[System testing of RabbitMQ]
 
 
@@ -139,44 +149,52 @@ image::stepik.png[]
 Является ли stem:[n] номером високосного года в Григорианском календаре
 
 
+== Логика
+
+Что это такое?
+
+[stem] 
+++++
+\huge
+\forall n \in \mathbb{N}\;(L(n) \iff
+( n \vdots 16) \vee (n \vdots 4 \wedge \neg n \vdots 25))
+++++
+
+Является ли stem:[n] номером високосного года в Григорианском календаре
+
+*Kevlin Henney*.  https://heisenbug-piter.ru/2020/spb/talks/4vhqcqstrtm8x7pgdncnzv[What we talk about when we talk about unit testing]
+
 
 == Ужинающие философы
 
 image::Table.png[{image-60-width}]
 
-== Алгоритм
-[small]
+== Алгоритм `dining_philosophers`
+[source]
 ----
 algorithm dining_philosophers
-    variables forks = [fork \in 1..NP |-> NULL]
-
-    define
-        LeftFork(p) == p
-        RightFork(p) == IF p = NP THEN 1 ELSE p + 1
-
-        HeldForks(p) ==
-        { x \in {LeftFork(p), RightFork(p)}: forks[x] = p}
-
-        AvailableForks(p) ==
-        { x \in {LeftFork(p), RightFork(p)}: forks[x] = NULL}
-    end define;
-
-    process philosopher \in 1..NP
-    variables hungry = TRUE;
-    begin P:
-        while hungry do
-            with fork \in AvailableForks(self) do
-                forks[fork] := self;
-            end with;
-            Eat:
-            if Cardinality(HeldForks(self)) = 2 then
-                hungry := FALSE;
-                forks[LeftFork(self)] := NULL ||
-                forks[RightFork(self)] := NULL;
-            end if;
-        end while;
-    end process;
-
+  variables forks = [fork \in 1..NP |-> NULL]
+  define
+    LeftFork(p) == p
+    RightFork(p) == IF p = NP THEN 1 ELSE p + 1
+    HeldForks(p) == { x \in {LeftFork(p), RightFork(p)}: forks[x] = p}
+    AvailableForks(p) == { x \in {LeftFork(p), RightFork(p)}: forks[x] = NULL}
+  end define;
+  process philosopher \in 1..NP
+  variables hungry = TRUE;
+  begin P:
+    while hungry do
+      with fork \in AvailableForks(self) do
+        forks[fork] := self;
+      end with;
+      Eat:
+      if Cardinality(HeldForks(self)) = 2 then
+        hungry := FALSE;
+        forks[LeftFork(self)] := NULL ||
+        forks[RightFork(self)] := NULL;
+        end if;
+    end while;
+  end process;
 end algorithm;
 ----
 
@@ -217,9 +235,10 @@ image::tla_deadlock.png[{image-100-width}]
 
 == Нужны ли тесты, если есть формальная спецификация?
 
-1. model checking vs.  формальное доказательство (Isabelle и Coq).
-2. Формальная спецификация обычно очень многое абстрагирует
-3. https://blog.acolyer.org/2015/10/15/ironfleet-proving-practical-distributed-systems-correc/[Cлучай Microsoft Iron Fleet]
+. model checking vs.  формальное доказательство (Isabelle и Coq).
+. synthesis vs. refinement
+. https://blog.acolyer.org/2015/10/15/ironfleet-proving-practical-distributed-systems-correc/[Cлучай Microsoft Iron Fleet]
+. D. Knuth, letter to Dr. P. van Emde Boas, April 1977:
 
 image::ihaveonlyproved.png[]
 
@@ -228,4 +247,6 @@ image::ihaveonlyproved.png[]
 . *Leslie Lamport.* Specifying Systems: The TLA+ Language
 . *Hillel Wayne.* Practical TLA+  
 . *Jack Vanlightly*. Heisenbug-Piter 2019. A systematic approach to building reliable distributed systems
+
+== Так нужна ли математика в тестировании?
 
