@@ -228,7 +228,7 @@ image::tla_deadlock.png[{image-100-width}]
 
 . model checking vs.  формальное доказательство (Isabelle и Coq).
 . synthesis vs. refinement
-. https://blog.acolyer.org/2015/10/15/ironfleet-proving-practical-distributed-systems-correc/[Cлучай Microsoft Iron Fleet]
+. https://blog.acolyer.org/2017/05/29/an-empirical-study-on-the-correctness-of-formally-verified-distributed-systems/[Cлучай Microsoft Iron Fleet]
 . *D. Knuth*, letter to Dr. P. van Emde Boas, April 1977:
 
 image::ihaveonlyproved.png[]
