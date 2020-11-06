@@ -126,7 +126,7 @@ image::datasaur.png[{image-70-width}]
 Узнаем больше про статистику с Анатолием Карповым: +
 https://stepik.org/course/76/promo
 
-image::stepik.png[]
+image::stepik.png[{image-60-width}]
 
 == Доклады (для тех, кто уже разбирается в статистике)
 
@@ -155,33 +155,34 @@ image::stepik.png[]
 
 * *Jessica Ingrassellino*. Heisenbug-SPb 2019. https://jugspeakers.online/ru/talk/1229.html[Property testing: Strategic automation for devs and SDETs]
 
+[%notitle]
 == Ужинающие философы
 
-image::Table.png[{image-60-width}]
+image::philosophers.png[{image-60-width}]
 
 == Алгоритм `dining_philosophers`
 [source]
 ----
 algorithm dining_philosophers
-  variables forks = [fork \in 1..NP |-> NULL]
+  variables chopsticks = [chopstick \in 1..NP |-> NULL]
   define
-    LeftFork(p) == p
-    RightFork(p) == IF p = NP THEN 1 ELSE p + 1
-    HeldForks(p) == { x \in {LeftFork(p), RightFork(p)}: forks[x] = p}
-    AvailableForks(p) == { x \in {LeftFork(p), RightFork(p)}: forks[x] = NULL}
+    LeftChopstick(p) == p
+    RightChopstick(p) == IF p = NP THEN 1 ELSE p + 1
+    HeldChopsticks(p) == { x \in {LeftChopstick(p), RightChopstick(p)}: chopsticks[x] = p}
+    AvailableChopsticks(p) == { x \in {LeftChopstick(p), RightChopstick(p)}: chopsticks[x] = NULL}
   end define;
   process philosopher \in 1..NP
   variables hungry = TRUE;
   begin P:
     while hungry do
-      with fork \in AvailableForks(self) do
-        forks[fork] := self;
+      with chopstick \in AvailableChopsticks(self) do
+        chopsticks[chopstick] := self;
       end with;
       Eat:
-      if Cardinality(HeldForks(self)) = 2 then
+      if Cardinality(HeldChopsticks(self)) = 2 then
         hungry := FALSE;
-        forks[LeftFork(self)] := NULL ||
-        forks[RightFork(self)] := NULL;
+        chopsticks[LeftChopstick(self)] := NULL ||
+        chopsticks[RightChopstick(self)] := NULL;
       end if;
     end while;
   end process;
